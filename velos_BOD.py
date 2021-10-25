@@ -6,7 +6,6 @@
 
 import pandas as pd
 import numpy as np
-import re
 import folium
 import streamlit as st
 from streamlit_folium import folium_static
