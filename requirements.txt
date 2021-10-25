@@ -1,0 +1,7 @@
+pandas
+numpy
+re
+json
+streamlit 
+folium
+streamlit_folium 
