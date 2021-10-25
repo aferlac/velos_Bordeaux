@@ -1,6 +1,5 @@
 pandas
 numpy
-re
 json
 streamlit 
 folium
