@@ -37,7 +37,7 @@ dfvelobordeaux = dfvelobordeaux.rename(columns={'properties.type':'type', 'prope
 # In[3]:
 
 
-dfadrBOD=pd.read_csv('adresses_BOD.csv')
+dfadrBOD=pd.read_csv('./adresses_BOD.csv')
 
 
 # In[4]:
