@@ -9,7 +9,6 @@ import numpy as np
 import folium
 import streamlit as st
 from streamlit_folium import folium_static
-import json
 from pandas import json_normalize
 
 
