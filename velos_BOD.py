@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[1]:
-
 
 import pandas as pd
 import numpy as np
@@ -10,10 +5,6 @@ import folium
 import streamlit as st
 from streamlit_folium import folium_static
 from pandas import json_normalize
-
-
-# In[2]:
-
 
 datavelobordeaux_url=("https://data.bordeaux-metropole.fr/geojson?key=17AEIIMYZZ&typename=ci_vcub_p")
 datavelobordeaux=pd.read_json(datavelobordeaux_url)
@@ -32,15 +23,7 @@ dfvelobordeaux = dfvelobordeaux.rename(columns={'properties.type':'type', 'prope
        'properties.nbplaces':'nbplaces', 'properties.nbvelos':'nbvelos', 'properties.nbelec':'nbelec',
        'properties.nbclassiq':'nbclassiq'})
 
-
-# In[3]:
-
-
 dfadrBOD=pd.read_csv('./adresses_BOD.csv')
-
-
-# In[4]:
-
 
 st.set_page_config(page_title=' Vélos libre-service ', page_icon=None, layout='wide', initial_sidebar_state='auto')
 st.title('Vélos libre-service Bordeaux')
@@ -55,28 +38,16 @@ indice=dfadrBOD[(dfadrBOD['commune']==commune) & (dfadrBOD['nom_voie']==rue) & (
 LAT=dfadrBOD['Lat'][indice] 
 LONG=dfadrBOD['Long'][indice]
 
-
-# In[5]:
-
-
 ### CALCUL DE LA DISTANCE AUX STATIONS
 dist=[]
 for i in range(len(dfvelobordeaux)):
     dist.append(np.sqrt((LAT-dfvelobordeaux['Lat'][i])**2 + (LONG-dfvelobordeaux['Long'][i])**2))
 dfvelobordeaux['DISTANCE']=dist
 
-
-# In[6]:
-
-
 dfvelofin=dfvelobordeaux.sort_values(by='DISTANCE')
 index=range(len(dfvelobordeaux))
 dfvelofin['index']=index
 dfvelofin = dfvelofin.set_index('index')
-
-
-# In[7]:
-
 
 map = folium.Map([LAT, LONG], zoom_start=16) # carte centrée sur la commune
 folium.Marker(location = [LAT,LONG],
@@ -89,10 +60,3 @@ for i in range(choix):
     # emplacement des n(=choix) plus proches stations
     
 folium_static(map) # Affichage de la carte
-
-
-# In[ ]:
-
-
-
-
